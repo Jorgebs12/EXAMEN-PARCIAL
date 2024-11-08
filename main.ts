@@ -3,7 +3,7 @@ import { AuthorModel, BooksModel } from "./types.ts"
 
 const MONGO_URL = Deno.env.get("MONGO_URL")
 if(!MONGO_URL){
-  console.error("MONGO no")
+  console.error("MONGO no conectado")
   Deno.exit(1)
 }
 
@@ -27,22 +27,22 @@ const handler = async (req: Request): Promise<Response>=>{
     if(path === "/libros") {
       const name = url.searchParams.get("name")
       if(name){
-        const booksdb = await autorCollection.find({name})
-        /*const books = await Promise.all{
-          booksdb.map((elem) => )
-        }*/
-       //ggreturn new Response(JSON.stringify(books))
+        const booksdb = await libroCollection.find({name})
+        const books = await Promise.all{
+            milibrito.map((elem: BooksModel) => {
+              elem.titulo,
+              elem.copias,
+              elem.autores
+          })
+        }
+       //return new Response(JSON.stringify(books))
       
       } }
     else if(path ==="libro"){
       
       }
-
-
     }
-
-
-
+    return new Response(JSON.stringify({status: 200}))
   }
 
 
